@@ -22,14 +22,14 @@ public class TaskController {
         return ResponseEntity.ok(this.taskrepo.findAll());
     }
 
-    @GetMapping({"/tasks/{title}/{description}"})
+    @PostMapping({"/tasks/{title}/{description}"})
     public ResponseEntity<Task> saveNewTask(@PathVariable String title, @PathVariable String description) {
         Task taskToSave = new Task(title, description);
         Task savedTask = (Task)this.taskrepo.save(taskToSave);
         return ResponseEntity.ok(savedTask);
     }
 
-    @GetMapping({"/tasks/{id}/state"})
+    @PostMapping({"/tasks/{id}/state"})
     public ResponseEntity<Task> findById(@PathVariable String id) {
         Task taskToUpdate = this.taskrepo.findByid(id);
         if (taskToUpdate != null) {
