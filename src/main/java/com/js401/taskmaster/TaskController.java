@@ -53,6 +53,12 @@ public class TaskController {
      */
     @PostMapping({"/tasks"})
     public ResponseEntity<Task> saveTask(@RequestBody Task newTask) {
+        //check if assignee exists and change status if status is empty
+        if(newTask.getAssignee() == null || newTask.getAssignee().equals("")) {
+            newTask.setStatus("available");
+        } else if (newTask.getStatus() == null || newTask.getStatus().equals("")){
+            newTask.setStatus("assigned");
+        }
         Task savedTask = this.taskrepo.save(newTask);
         return ResponseEntity.ok(savedTask);
     }
