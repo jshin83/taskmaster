@@ -42,7 +42,18 @@ public class TaskController {
     public ResponseEntity<Task> saveNewTask(@PathVariable String title, @PathVariable String description,
                                             @PathVariable String assignee) {
         Task taskToSave = new Task(title, description, assignee);
-        Task savedTask = (Task)this.taskrepo.save(taskToSave);
+        Task savedTask = this.taskrepo.save(taskToSave);
+        return ResponseEntity.ok(savedTask);
+    }
+
+    /**
+     * Add new task via request body
+     * @param newTask Task, object to add
+     * @return newly added Task
+     */
+    @PostMapping({"/tasks"})
+    public ResponseEntity<Task> saveTask(@RequestBody Task newTask) {
+        Task savedTask = this.taskrepo.save(newTask);
         return ResponseEntity.ok(savedTask);
     }
 

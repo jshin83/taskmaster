@@ -6,7 +6,9 @@ Manages tasks with 4 states for status and an assignee
 ## Routes
 
     + @GetMapping({"/tasks"}) -> returns all tasks in db
-    + @PostMapping({"/tasks/{title}/{description}"}) -> adds a new task
+    + @PostMapping({"/tasks"}) -> add Task object via Request Body - need to send Task object with
+        title, description, assignee properties
+    + @PostMapping({"/tasks/{title}/{description}"}) -> adds a new task via query params
     + @PutMapping({"/tasks/{id}/state"}) -> updates state
         + this route will not change the assignment if there is no assignee (null or empty String)
     + @PutMapping({"/tasks/{id}/assign/{assignee}"}) -> updates Task to assignee
