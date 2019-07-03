@@ -47,7 +47,7 @@ public class TaskRepositoryIntegrationTest {
 
     @Test
     public void readWriteTestCase() {
-        Task dave = new Task(EXPECTED_TITLE, EXPECTED_DESCRIPTION);
+        Task dave = new Task(EXPECTED_TITLE, EXPECTED_DESCRIPTION, "");
         System.out.println(dave.toString());
         repository.save(dave);
 
