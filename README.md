@@ -15,6 +15,8 @@ Manages tasks with 4 states for status and an assignee
         + this route will not change the assignee if the same one was already assigned
         + this route will change the status to "assigned" if the Task is updated
     + @DeleteMapping({"tasks/delete/{id}"}) -> deletes a Task by id
+    + @GetMapping({"/tasks/{id}"}) -> fetches one Task by id
+    + @PostMapping({"/tasks/{id}/images"}) -> updates existing Task image property
 
 
 ## Issues
