@@ -2,16 +2,21 @@ package com.js401.taskmaster;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.Optional;
-
-@Controller
+@CrossOrigin
+@RestController
 public class TaskController {
     @Autowired
     TaskRepository taskrepo;
 
+    private S3Client s3Client;
+
+    @Autowired
+    TaskController(S3Client s3Client) {
+        this.s3Client = s3Client;
+    }
 
     /**
      * Home route
@@ -29,6 +34,32 @@ public class TaskController {
     @GetMapping({"/tasks"})
     public ResponseEntity<Iterable<Task>> findAllTasks() {
         return ResponseEntity.ok(this.taskrepo.findAll());
+    }
+
+    /**
+     * Retrieves one Task by its id
+     * @param id String, Task id
+     * @return Task
+     */
+    @GetMapping({"/tasks/{id}"})
+    public ResponseEntity<Task> getOneTask(@PathVariable String id) {
+        Task task = taskrepo.findByid(id);
+        return ResponseEntity.ok(task);
+    }
+
+    /**
+     * Updates an existing task image
+     * @param id String, Task id
+     * @param file File, image
+     * @return Task
+     */
+    @PostMapping({"/tasks/{id}/images"})
+    public ResponseEntity<Task> addImage(@PathVariable String id, @RequestPart(value = "file") MultipartFile file) {
+        String url = this.s3Client.uploadFile(file);
+        Task task = taskrepo.findByid(id);
+        task.setUrl(url);
+        taskrepo.save(task);
+        return ResponseEntity.ok(task);
     }
 
     /**
@@ -85,7 +116,6 @@ public class TaskController {
             taskToUpdate.setStatus(taskToUpdate.changeStatus(taskToUpdate.getStatus()));
             this.taskrepo.save(taskToUpdate);
         }
-
         return ResponseEntity.ok(taskToUpdate);
     }
 
