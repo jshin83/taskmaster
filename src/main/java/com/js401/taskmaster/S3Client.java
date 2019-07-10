@@ -25,9 +25,6 @@ public class S3Client {
     @Value("${amazon.s3.endpoint}")
     private String endpointUrl;
 
-    @Value("${amazon.s3.endpoint}")
-    private String thumbnailUrl;
-
     @Value("${amazon.aws.accesskey}")
     private String accessKey;
 
@@ -36,6 +33,9 @@ public class S3Client {
 
     @Value("${amazon.aws.bucket}")
     private String bucket;
+
+    @Value("${amazon.s3.thumbnail.endpoint}")
+    private String thumbnailUrl;
 
 
     @PostConstruct
