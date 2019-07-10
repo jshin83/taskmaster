@@ -50,14 +50,15 @@ public class TaskController {
     /**
      * Updates an existing task image
      * @param id String, Task id
-     * @param file File, image
+     * @param file String[], image at index 0, thumbnail at index 1
      * @return Task
      */
     @PostMapping({"/tasks/{id}/images"})
     public ResponseEntity<Task> addImage(@PathVariable String id, @RequestPart(value = "file") MultipartFile file) {
-        String url = this.s3Client.uploadFile(file);
+        String[] url = this.s3Client.uploadFile(file);
         Task task = taskrepo.findByid(id);
-        task.setUrl(url);
+        task.setUrl(url[0]);
+        task.setThumbnail(url[1]);
         taskrepo.save(task);
         return ResponseEntity.ok(task);
     }

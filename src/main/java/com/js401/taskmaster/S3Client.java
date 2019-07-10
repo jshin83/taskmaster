@@ -25,6 +25,9 @@ public class S3Client {
     @Value("${amazon.s3.endpoint}")
     private String endpointUrl;
 
+    @Value("${amazon.s3.endpoint}")
+    private String thumbnailUrl;
+
     @Value("${amazon.aws.accesskey}")
     private String accessKey;
 
@@ -41,16 +44,18 @@ public class S3Client {
         this.s3client = new AmazonS3Client(credentials);
     }
 
-    public String uploadFile(MultipartFile multipartFile) {
-        String fileUrl = "";
+    public String[] uploadFile(MultipartFile multipartFile) {
+        String[] fileUrl = new String[2];
         try {
-        File file = convertMultiPartToFile(multipartFile);
-        String fileName = generateFileName(multipartFile);
-        fileUrl = endpointUrl + "/" + fileName;
-        uploadFileTos3bucket(fileName, file);
-        file.delete();
-        } catch (Exception e) {
-        e.printStackTrace();
+            File file = convertMultiPartToFile(multipartFile);
+            String fileName = generateFileName(multipartFile);
+            fileUrl[0] = endpointUrl + "/" + fileName;
+            fileUrl[1] = thumbnailUrl + "/" + fileName;
+
+            uploadFileTos3bucket(fileName, file);
+            file.delete();
+            } catch (Exception e) {
+            e.printStackTrace();
         }
         return fileUrl;
     }
