@@ -24,3 +24,10 @@ Manages tasks with 4 states for status and an assignee
     + needed to use Postman, as using local means my routes could only be Get
     + GIT ISSUES - user error, but frustrating
     + needed to have region specified
+    
+## Lambda Warmer
+
+![](./images/warmer1.png)
+![](./images/warmer2.png)
+![](./images/warmer3.png)
+![](./images/warmer4.png)
