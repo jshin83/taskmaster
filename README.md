@@ -54,6 +54,7 @@ Using Queues and Notifications ...
 + [noSql triggers](https://aws.amazon.com/blogs/compute/619/)
 + [streams](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.Lambda.Tutorial.html#Streams.Lambda.Tutorial.CreateTable)
 + [SNS](https://docs.aws.amazon.com/sns/latest/dg/sns-how-it-works.html)
++ [query and scan](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GettingStarted.Java.04.html)
 
 ### Blockers
 + Lack of direction / instruction
