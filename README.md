@@ -50,11 +50,10 @@ Using Queues and Notifications ...
 + Instead of having S3 run the resizer automatically on upload, evaluate the size of the image in your Java code and then send a message to a Q, that will in turn trigger the lambda resizer -- only when the image > 350k
 
 ### Sources
-[using params](https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-cwe.html)
-[noSql triggers](https://aws.amazon.com/blogs/compute/619/)
-[streams](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.Lambda.Tutorial.html#Streams.Lambda.Tutorial.CreateTable)
-[SNS](https://docs.aws.amazon.com/sns/latest/dg/sns-how-it-works.html)
++ [using params](https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-cwe.html)
++ [noSql triggers](https://aws.amazon.com/blogs/compute/619/)
++ [streams](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.Lambda.Tutorial.html#Streams.Lambda.Tutorial.CreateTable)
++ [SNS](https://docs.aws.amazon.com/sns/latest/dg/sns-how-it-works.html)
 
 ### Blockers
-Lack of direction / instruction
-Everything
++ Lack of direction / instruction
